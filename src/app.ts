@@ -1,9 +1,15 @@
-import express, { Application, Request, Response, NextFunction } from 'express'
+import loaders from './loaders'
+import config from './config'
+import express from 'express'
 
-const app: Application = express()
+async function startServer() {
+  const app = express()
 
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
-  res.send('Running ok')
-})
+  await loaders(app)
 
-app.listen(5000, () => console.log('Server running'))
+  app.listen(config.port, () => {
+    console.log(`Your server is on ${config.port}`)
+  })
+}
+
+startServer()
