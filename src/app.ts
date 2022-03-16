@@ -7,6 +7,10 @@ async function startServer() {
 
   await loaders(app)
 
+  app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
+
   app.listen(config.port, () => {
     console.log(`Your server is on ${config.port}`)
   })

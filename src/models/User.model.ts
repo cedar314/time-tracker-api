@@ -1,22 +1,15 @@
 import mongoose, { Schema } from 'mongoose'
-
-const taskSchema = new Schema({
-  name: String,
-  description: String,
-  color: String,
-  icon: String,
-})
+import { taskSchema, folderSchema } from './Task.model'
+import { reminderSchema } from './Reminder.model'
 
 const userSchema = new Schema({
-  name: String,
-  email: {
+  name: {
     type: String,
     required: true,
-    lowercase: true,
   },
-  task: [taskSchema],
+  tasks: [taskSchema],
+  taskFolders: [folderSchema],
+  reminders: [reminderSchema],
 })
 
-const User = mongoose.model('User', userSchema)
-
-export default User
+export const User = mongoose.model('User', userSchema)
