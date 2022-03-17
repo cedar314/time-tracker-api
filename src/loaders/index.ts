@@ -5,6 +5,7 @@ import mongoLoader from './mongoose'
 
 export default async (app: express.Application) => {
   await expressLoader(app)
-  await mongoLoader()
   console.log('Loaded express.')
+  await mongoLoader()
+  console.log('Loaded mongoDB.')
 }
