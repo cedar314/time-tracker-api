@@ -23,7 +23,3 @@ export const reminderSchema = new Schema({
   },
   timeline: [Date],
 })
-
-const Reminder = mongoose.model('Reminder', reminderSchema)
-
-export default Reminder

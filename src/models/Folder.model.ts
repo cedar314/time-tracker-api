@@ -12,7 +12,3 @@ export const folderSchema = new Schema({
   },
   children: [taskSchema],
 })
-
-const Folder = mongoose.model('Folder', folderSchema)
-
-export default Folder

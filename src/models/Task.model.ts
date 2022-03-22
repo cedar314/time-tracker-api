@@ -13,9 +13,8 @@ export const taskSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  timeline: [Date],
+  timeline: {
+    type: [Date],
+    default: [],
+  },
 })
-
-const Task = mongoose.model('Task', taskSchema)
-
-export default Task

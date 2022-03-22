@@ -8,11 +8,6 @@ async function startServer() {
 
   await loaders(app)
 
-  app.use('/', (req, res, next) => {
-    res.send('Hello World!')
-    next()
-  })
-
   app.use('/', router)
 
   app.listen(config.port, () => {

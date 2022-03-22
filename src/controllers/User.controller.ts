@@ -1,17 +1,17 @@
 import express, { Router } from 'express'
-import { readUser, createUser } from '../models/User.model'
+import { rename } from 'fs'
+import { readUser, readAllUsers, createUser } from '../models/User.model'
 
 const router = Router()
 
-router.get('/', (req, res) => {
-  if (typeof req.query.id === 'string') {
-    const user = readUser(req.query.id)
-  } else throw 'request query does not contain id of type string'
+router.get('/', async (req, res) => {
+  const user = await readAllUsers()
+  res.json(user)
 })
 
-router.post('/', (req, res) => {
-  console.log(req.body)
-  createUser(req.body.id, req.body.name)
+router.post('/', async (req, res) => {
+  const newUser = await createUser(req.body.id, req.body.name)
+  res.json(newUser)
 })
 
 export default router
