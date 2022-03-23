@@ -5,8 +5,12 @@ import { readUser, readAllUsers, createUser } from '../models/User.model'
 const router = Router()
 
 router.get('/', async (req, res) => {
-  const user = await readAllUsers()
-  res.json(user)
+  if (typeof req.query.user === 'string') {
+    const user = await readUser(req.query.user)
+    res.json(user)
+    return
+  }
+  res.json(await readAllUsers())
 })
 
 router.post('/', async (req, res) => {
